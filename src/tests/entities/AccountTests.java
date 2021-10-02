@@ -52,4 +52,27 @@ public class AccountTests {
 		Assertions.assertTrue(expectedValue == acc.getBalance());
 		Assertions.assertEquals(result, initialBalance);
 	}
+
+	@Test
+	public void withdrawShouldDecreaseAmountWhenSufficientBalance() {
+		//it's a good practice to test every scenario
+		
+		Account acc = AccountFactory.createAccount(800.0);
+		
+		acc.withdraw(500.0);
+		
+		Assertions.assertEquals(300.0, acc.getBalance());
+	}
+	
+	@Test
+	public void withdrawShouldThrowExceptionWhenInsufficientBalance() {	
+		//in junit 5 the process to work with exceptions:
+		// 1a param: exception that is expected to be thrown
+		// 2a param: lambda expresion that will cause the exception
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			Account acc = AccountFactory.createAccount(800.0);
+			acc.withdraw(800.000001);
+		});
+	}
+	
 }
