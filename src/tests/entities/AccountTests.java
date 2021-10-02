@@ -7,9 +7,12 @@ import entities.Account;
 
 public class AccountTests {
 
-	// <acao> should <efeito> [when <cenario>]
+	// <action> should <effect> [when <scene>]
 	@Test
-	public void depositShouldIncreaseBalanceWhenPositiveAmount() {
+	public void depositShouldIncreaseBalanceAndDiscountFeeWhenPositiveAmount() {
+		
+		// Pattern AAA
+		
 		// Arrange
 		double amount = 200.0;
 		double expectedValue = 196.0;
@@ -18,8 +21,7 @@ public class AccountTests {
 		// Act
 		acc.deposit(amount);
 		
-		// Assert -- 
+		// Assert
 		Assertions.assertEquals(expectedValue, acc.getBalance());
-		
 	}
 }
